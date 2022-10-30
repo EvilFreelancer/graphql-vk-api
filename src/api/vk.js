@@ -15,10 +15,10 @@ export function setToken(token) {
 export function apiRequest(method, params) {
   const _params = buildQuery(params);
   const token = accessToken ? `access_token=${accessToken}` : '';
-  return axios.get(`https://api.vk.com/method/${method}?${_params}${token}&v=5.42`)
+  return axios.get(`https://api.vk.com/method/${method}?${_params}${token}&v=5.131`)
     .then(result => {
       if (result.data.error) {
-        return new Error(result.data.error.error_msg)
+        return new Error(JSON.stringify(result.data.error))
       } else {
         return result.data.response
       }

@@ -25,10 +25,12 @@ const userType = new GraphQLObjectType({
         },
         type: new GraphQLList(albumType),
         resolve(user, args) {
-          const albumIds = args.album_ids ? args.album_ids.join(',') : '';
+          // eslint-disable-next-line camelcase
+          const album_ids = args.album_ids ? args.album_ids.join(',') : '';
           return apiRequest('photos.getAlbums', {
             owner_id: user.id,
-            album_ids: albumIds,
+            // eslint-disable-next-line camelcase
+            album_ids,
             count: args.count,
             offset: args.offset
           }).then(result => result.items)
