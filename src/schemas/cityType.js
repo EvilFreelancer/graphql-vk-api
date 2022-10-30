@@ -1,17 +1,12 @@
-import {
-    GraphQLObjectType,
-    GraphQLString,
-    GraphQLID
-} from 'graphql'
+import { GraphQLObjectType, GraphQLString, GraphQLID } from 'graphql'
 
-let cityType = new GraphQLObjectType({
-    name:"UserCity",
-    fields(){
-        return {
-            id:{type:GraphQLID},
-            title:{type:GraphQLString}
-        }
+const cityType = new GraphQLObjectType({
+  name: 'UserCity',
+  fields() {
+    return {
+      id: { type: GraphQLID }, title: { type: GraphQLString }
     }
+  }
 });
 
 export default cityType;
