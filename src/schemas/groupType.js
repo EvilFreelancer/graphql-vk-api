@@ -2,6 +2,9 @@ import { GraphQLObjectType, GraphQLString, GraphQLID, GraphQLInt, GraphQLList } 
 import { apiRequest } from '../api/vk';
 import tagType from './tagType';
 
+const _string = { type: GraphQLString };
+const _int = { type: GraphQLInt };
+
 const groupType = new GraphQLObjectType({
   name: 'group',
   fields() {
@@ -11,66 +14,64 @@ const groupType = new GraphQLObjectType({
       tags: {
         type: new GraphQLList(tagType),
         resolve(group, args) {
-          console.log(group);
           return apiRequest('groups.getTagList', {
             group_id: group.id
           }).then(result => {
-            console.log(result);
             return result.items
           })
         }
       },
-      screen_name: { type: GraphQLString },
-      is_closed: { type: GraphQLInt },
-      deactivated: { type: GraphQLString },
-      is_admin: { type: GraphQLInt },
-      admin_level: { type: GraphQLInt },
-      is_member: { type: GraphQLInt },
-      is_advertiser: { type: GraphQLInt },
-      invited_by: { type: GraphQLInt },
-      type: { type: GraphQLString },
-      photo_50: { type: GraphQLString },
-      photo_100: { type: GraphQLString },
-      photo_200: { type: GraphQLString },
-      activity: { type: GraphQLString },
+      screen_name: _string,
+      is_closed: _int,
+      deactivated: _string,
+      is_admin: _int,
+      admin_level: _int,
+      is_member: _int,
+      is_advertiser: _int,
+      invited_by: _int,
+      type: _string,
+      photo_50: _string,
+      photo_100: _string,
+      photo_200: _string,
+      activity: _string,
       // addresses: { type: GraphQLObjectType },
-      age_limits: { type: GraphQLInt },
+      age_limits: _int,
       // ban_info: { type: GraphQLObjectType },
-      can_create_topic: { type: GraphQLInt },
-      can_message: { type: GraphQLInt },
-      can_post: { type: GraphQLInt },
-      can_see_all_posts: { type: GraphQLInt },
-      can_upload_doc: { type: GraphQLInt },
-      can_upload_story: { type: GraphQLInt },
-      can_upload_video: { type: GraphQLInt },
+      can_create_topic: _int,
+      can_message: _int,
+      can_post: _int,
+      can_see_all_posts: _int,
+      can_upload_doc: _int,
+      can_upload_story: _int,
+      can_upload_video: _int,
       // city: { type: GraphQLObjectType },
       // contacts: { type: GraphQLList },
       // counters: { type: GraphQLObjectType },
       // country: { type: GraphQLObjectType },
       // cover: { type: GraphQLObjectType },
       // crop_photo: { type: GraphQLObjectType },
-      description: { type: GraphQLString },
-      fixed_post: { type: GraphQLInt },
-      has_photo: { type: GraphQLInt },
-      is_favorite: { type: GraphQLInt },
-      is_hidden_from_feed: { type: GraphQLInt },
-      is_messages_blocked: { type: GraphQLInt },
+      description: _string,
+      fixed_post: _int,
+      has_photo: _int,
+      is_favorite: _int,
+      is_hidden_from_feed: _int,
+      is_messages_blocked: _int,
       // links
-      main_album_id: { type: GraphQLInt },
-      main_section: { type: GraphQLInt },
+      main_album_id: _int,
+      main_section: _int,
       // market
-      member_status: { type: GraphQLInt },
-      members_count: { type: GraphQLInt },
+      member_status: _int,
+      members_count: _int,
       // place
-      public_date_label: { type: GraphQLString },
-      site: { type: GraphQLString },
-      start_date: { type: GraphQLString },
-      finish_date: { type: GraphQLString },
-      status: { type: GraphQLString },
-      trending: { type: GraphQLInt },
-      verified: { type: GraphQLInt },
-      wall: { type: GraphQLInt },
-      wiki_page: { type: GraphQLString }
+      public_date_label: _string,
+      site: _string,
+      start_date: _string,
+      finish_date: _string,
+      status: _string,
+      trending: _int,
+      verified: _int,
+      wall: _int,
+      wiki_page: _string
     }
   }
 });
